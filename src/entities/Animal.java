@@ -1,5 +1,7 @@
 package entities;
 
+import exceptions.InvalidAgeException;
+
 public class Animal {
     private String family;
     private String name;
@@ -11,12 +13,15 @@ public class Animal {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws InvalidAgeException {
+        if (age < 0)
+            throw new InvalidAgeException("Un animal ne peut pas avoir un âge négatif");
         this.age = age;
     }
 
     public Animal(String family, String name, int age, boolean isMammal) {
-        if (age < 0) throw new IllegalArgumentException("Un animal ne peut pas avoir un âge négatif");
+        if (age < 0)
+            throw new IllegalArgumentException("Un animal ne peut pas avoir un âge négatif");
         this.family = family;
         this.name = name;
         this.age = age;

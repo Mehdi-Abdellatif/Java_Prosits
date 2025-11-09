@@ -1,6 +1,8 @@
 package main;
 
 import entities.*;
+import exceptions.InvalidAgeException;
+import exceptions.ZooFullException;
 
 public class ZooManagement {
     int nbrCages = 20;
@@ -26,10 +28,13 @@ public class ZooManagement {
         Animal tiger = new Animal("siberian", "Tiger", 4, true);
         Animal a3 = new Animal("monkey", "ape", 2, true);
 
-        myZoo.addAnimal(lion);
-        myZoo.addAnimal(tiger);
-        myZoo.addAnimal(a3);
-
+        try {
+            myZoo.addAnimal(lion);
+            myZoo.addAnimal(tiger);
+            myZoo.addAnimal(a3);
+        }catch (ZooFullException | InvalidAgeException e) {
+            System.out.println("Erreur : "+ e.getMessage());
+        }
         myZoo.addAquaticAnimal(dolphin);
         myZoo.addAquaticAnimal(penguin);
 

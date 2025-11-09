@@ -1,16 +1,19 @@
 package entities;
 
+import exceptions.InvalidAgeException;
+import exceptions.ZooFullException;
+
 public class Zoo{
     private Animal[] animals;
     private String name;
     private String city;
-    private final int nbrCages = 25;
+    private final int nbrCages = 3;
     private int nbrAnimals;
     private Aquatic[] aquaticAnimals = new Aquatic[10];
     private int nbrAquaticAnimals = 0;
     public Zoo(String name, String city) {
         if (name == null || name.trim().isEmpty())
-            throw new IllegalArgumentException("Le nom d’un main.Zoo ne doit pas être vide");
+            throw new IllegalArgumentException("Le nom d’un Zoo ne doit pas être vide");
         this.animals = new Animal[nbrCages];
         this.name = name;
         this.city = city;
@@ -33,11 +36,17 @@ public class Zoo{
         }
         return -1;
     }
-    public boolean addAnimal(Animal animal) {
-        if ( isZooFull() || searchAnimal(animal) != -1 ) return false;
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+        if (animal.getAge() < 0)
+            throw new InvalidAgeException("L’âge d’un animal ne peut pas être négatif.");
+
+        if (nbrAnimals >= nbrCages)
+            throw new ZooFullException("Le zoo est plein! Impossible d’ajouter un autre animal");
+
         animals[nbrAnimals++] = animal;
-        return true;
+        System.out.println("Animal ajouté!");
     }
+
     boolean removeAnimal(Animal animal) {
         int i = searchAnimal(animal);
         if (i == -1) return false;
@@ -91,6 +100,4 @@ public class Zoo{
         System.out.println("Dolphins: " + dolphins);
         System.out.println("Penguins: " + penguins);
     }
-
 }
-
