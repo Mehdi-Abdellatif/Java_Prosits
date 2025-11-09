@@ -6,6 +6,15 @@ public class Animal {
     public String getName() { return name; }
     private int age;
     private boolean isMammal;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public Animal(String family, String name, int age, boolean isMammal) {
         if (age < 0) throw new IllegalArgumentException("Un animal ne peut pas avoir un âge négatif");
         this.family = family;

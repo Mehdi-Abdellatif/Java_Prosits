@@ -6,7 +6,8 @@ public class Zoo{
     private String city;
     private final int nbrCages = 25;
     private int nbrAnimals;
-
+    private Aquatic[] aquaticAnimals = new Aquatic[10];
+    private int nbrAquaticAnimals = 0;
     public Zoo(String name, String city) {
         if (name == null || name.trim().isEmpty())
             throw new IllegalArgumentException("Le nom d’un main.Zoo ne doit pas être vide");
@@ -53,5 +54,43 @@ public class Zoo{
             return z2;
         }
     }
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (aquatic == null || nbrAquaticAnimals >= aquaticAnimals.length) return;
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] != null && aquaticAnimals[i].getName().equals(aquatic.getName()))
+                return;
+        }
+        aquaticAnimals[nbrAquaticAnimals++] = aquatic;
+    }
+    public void displayAquaticSwims() {
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] != null) {
+                aquaticAnimals[i].swim();
+            }
+        }
+    }
+    public float maxPenguinSwimmingDepth() {
+        float max = 0f;
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            Aquatic a = aquaticAnimals[i];
+            if (a instanceof Penguin) {
+                float d = ((Penguin) a).getSwimmingDepth();
+                if (d > max) max = d;
+            }
+        }
+        return max;
+    }
+
+    public void displayNumberOfAquaticsByType() {
+        int dolphins = 0, penguins = 0;
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            Aquatic a = aquaticAnimals[i];
+            if (a instanceof Dolphin) dolphins++;
+            else if (a instanceof Penguin) penguins++;
+        }
+        System.out.println("Dolphins: " + dolphins);
+        System.out.println("Penguins: " + penguins);
+    }
+
 }
 
