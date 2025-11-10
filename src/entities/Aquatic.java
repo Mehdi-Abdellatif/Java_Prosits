@@ -1,8 +1,11 @@
 package entities;
 
+import enumerations.Food;
+import interfaces.Carnivore;
+
 import java.util.Objects;
 
-public abstract class Aquatic extends Animal {
+public abstract class Aquatic extends Animal implements Carnivore<Food> {
     private String habitat;
 
     public Aquatic(String family, String name, int age, boolean isMammal, String habitat) {
@@ -35,5 +38,8 @@ public abstract class Aquatic extends Animal {
         return getAge() == other.getAge()
                 && Objects.equals(getName(), other.getName())
                 && Objects.equals(habitat, other.habitat);
+    }
+    public void eatMeat(Food meat){
+        if (meat.equals(Food.MEAT)) {System.out.println("This aquatic animal eats "+Food.MEAT);}
     }
 }

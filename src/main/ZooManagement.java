@@ -1,6 +1,7 @@
 package main;
 
 import entities.*;
+import enumerations.Food;
 import exceptions.InvalidAgeException;
 import exceptions.ZooFullException;
 
@@ -40,6 +41,8 @@ public class ZooManagement {
 
         myZoo.displayAquaticSwims();
 
+        penguin.eatMeat(Food.MEAT);
+        terrestrial.eatPlantAndmeat(Food.BOTH);
 
 
         myZoo.displayAnimals();
