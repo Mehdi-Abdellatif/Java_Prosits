@@ -71,6 +71,5 @@ public class EmployeeManagement {
         for (var entry : mapTriee.entrySet()) {
             System.out.println("ID: " + entry.getKey().getId() + " (" + entry.getKey().getNom() + ") -> " + entry.getValue().getNom());
         }
-
     }
 }

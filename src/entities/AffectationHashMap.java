@@ -7,7 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class AffectationHashMap {
-    private HashMap<Employee, Departement> affectations;
+    private Map<Employee, Departement> affectations;
+
+    public AffectationHashMap() {
+        this.affectations = new HashMap<>();
+    }
 
     public void ajouterEmployeDepartement(Employee e,Departement d){
         this.affectations.put(e,d);
