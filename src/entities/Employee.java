@@ -64,7 +64,7 @@ public class Employee implements Comparable<Employee> {
         if (o == null || getClass() != o.getClass())
             return false;
         Employee employee = (Employee) o;
-        return id == employee.id && Objects.equals(nom, employee.nom);
+        return id == employee.id;
     }
 
     @Override
@@ -80,5 +80,10 @@ public class Employee implements Comparable<Employee> {
     @Override
     public int compareTo(Employee other) {
         return Integer.compare(this.id, other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
